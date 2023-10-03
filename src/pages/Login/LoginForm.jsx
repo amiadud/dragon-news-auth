@@ -19,6 +19,9 @@ const LoginForm = () => {
       console.log(result.user);
       navigate('/about');
     })
+    .catch(err => {
+      toast.error("please enter correct email and password")
+    })
   }
 
 
