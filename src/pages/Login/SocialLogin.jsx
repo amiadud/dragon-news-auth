@@ -8,7 +8,7 @@ const SocialLogin = () => {
 
     const {userLoginWithGoogle, userLoginWithGithub} = useAuth()
 
-    const navigate =useNavigate()
+    const navigate = useNavigate()
 
     const handleGoogleLogin = () => {
         userLoginWithGoogle()
