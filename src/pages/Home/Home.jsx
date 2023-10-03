@@ -4,9 +4,14 @@ import Navbar from '../../shared/Navbar/Navbar';
 import LeftBar from '../../shared/LeftBar/LeftBar';
 import RightBar from '../../shared/RightBar/RightBar';
 import BreakingNews from './BreakingNews';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet, useLoaderData } from 'react-router-dom';
+import NewsCard from './NewsCard';
 
 const Home = () => {
+
+    const newsData = useLoaderData()
+    console.log(newsData);
+
     return (
         <div>
             <Header></Header>
@@ -16,7 +21,11 @@ const Home = () => {
                 <div>
                     <LeftBar></LeftBar>
                     </div>
-                <div className='md:col-span-2'><Outlet></Outlet></div>
+                <div className='md:col-span-2'>
+                {
+                    newsData.map( news => <NewsCard key={news._id} news={news}></NewsCard>)
+                }
+                </div>
                 <div><RightBar></RightBar></div>
             </div>
         </div>

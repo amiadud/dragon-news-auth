@@ -3,10 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { updateProfile } from 'firebase/auth';
 import toast, { Toaster } from 'react-hot-toast';
+import Navbar from '../../shared/Navbar/Navbar';
 
 const RegisterForm = () => {
-  const [success, setSuccess] = useState('')
-  const [showpass, setShowPass] = useState(false)
+  // const [success, setSuccess] = useState('')
+  // const [showpass, setShowPass] = useState(false)
 
   const navigate = useNavigate()
 
@@ -14,14 +15,16 @@ const RegisterForm = () => {
   const { createUser } = useAuth() ;
     const handleRegister = (e) => {
         e.preventDefault();
-        const name = e.target.name.value
-        const photoURL = e.target.imgurl.value
-        const email = e.target.email.value
-        const password = e.target.password.value
-        const terms = e.target.terms.checked
+        const form = new FormData(e.currentTarget)
+        const name = form.get('name');
+        const photoURL = form.get('photoURL');
+        const email = form.get('email');
+        const password = form.get('password');
+        const terms = form.get('terms');
         e.target.reset();
         //reset error
-        setSuccess('')
+
+
         if (password.length < 6 ){
           toast.error(' Password should be at least 6 characters or longer');
           return;
@@ -50,6 +53,7 @@ const RegisterForm = () => {
 
     return (
         <div>
+          <Navbar></Navbar>
             <div className="hero bg-base-200">
   <div className=" flex-col my-10 lg:flex-row-reverse">
     <div className="card flex-shrink-0 w-full  shadow-2xl bg-base-100">

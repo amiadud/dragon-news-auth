@@ -1,23 +1,27 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import toast, { Toaster } from 'react-hot-toast';
+import Navbar from '../../shared/Navbar/Navbar';
 
 const LoginForm = () => {
-  const { userLogin } = useAuth()
-  const navigate = useNavigate()
-  
+  const { userLogin } = useAuth();
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  console.log('location in the login page',location);
   
   
   const handleLogin = (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    const form = new FormData(e.currentTarget)
+    const email = form.get('email');
+    const password = form.get('password');
     userLogin(email,password)
     .then(result => {
       toast.success("Your account Logged in successfully")
       console.log(result.user);
-      navigate('/about');
+      navigate(location?.state ? location.state : '/');
     })
     .catch(err => {
       toast.error("please enter correct email and password")
@@ -27,6 +31,7 @@ const LoginForm = () => {
 
     return (
       <>
+      <Navbar></Navbar>
         <div className="hero bg-base-200">
         <div className=" flex-col my-10 lg:flex-row-reverse">
           <div className="card flex-shrink-0 w-full  shadow-2xl bg-base-100">

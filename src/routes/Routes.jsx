@@ -2,11 +2,10 @@ import { Outlet, createBrowserRouter } from "react-router-dom";
 import Root from "../layouts/Root";
 import Home from "../pages/Home/Home";
 import About from "../pages/About/About";
-import Login from "../pages/Login/Login";
 import LoginForm from "../pages/Login/LoginForm";
 import RegisterForm from "../pages/Login/RegisterForm";
-import LeftBar from "../shared/LeftBar/LeftBar";
-import News from "../pages/Home/News";
+import NewsDetails from "../pages/News/NewsDetails";
+import PrivateRoute from "./PrivateRoute";
 
 const Routes = createBrowserRouter([
     {
@@ -16,7 +15,12 @@ const Routes = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Home></Home>
+                element: <Home></Home>,
+                loader: () => fetch('news.json')
+            },
+            {
+                path: "/news/:id",
+                element:<PrivateRoute><NewsDetails></NewsDetails></PrivateRoute>
             },
             {
                 path: "/about",
@@ -29,27 +33,16 @@ const Routes = createBrowserRouter([
                 ]
             },
             {
-               element:<Login></Login>,
-               children: [
-                {
-                    path: "/login",
-                    element: <LoginForm></LoginForm>
-                },
-                {
-                    path: "/register",
-                    element: <RegisterForm></RegisterForm>,
-                }
-               ]
+                path: "/login",
+                element:<LoginForm></LoginForm>
             },
             {
-                path: "/categories/1",
-                element: <Home></Home>,
-                children: [
-                    {
-                        path:"/categories/1",
-                        element: <News></News>
-                    }
-                ]
+                path: "/register",
+                element:<RegisterForm></RegisterForm>
+            },
+            {
+                path: "/categories/:id",
+                element: <div>hello</div>
             }
         ]
     }

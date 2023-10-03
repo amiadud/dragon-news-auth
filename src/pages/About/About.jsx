@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Navbar from '../../shared/Navbar/Navbar';
 import Header from '../../shared/Header/Header';
 import useAuth from '../../hooks/useAuth';
+import RightBar from '../../shared/RightBar/RightBar';
 
 const About = () => {
 
@@ -16,6 +17,10 @@ const About = () => {
                 user ? <><h2 className='text-5xl text-center'>I am {user?.displayName}</h2>
                 <img src={user?.photoURL} alt="" /></> : <></>
             }
+            <div className='grid grid-cols-4'>
+                <div className='col-span-3'>ss</div>
+                <div><RightBar></RightBar></div>
+            </div>
         </div>
     );
 };
