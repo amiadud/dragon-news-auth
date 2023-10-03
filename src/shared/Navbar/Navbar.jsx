@@ -40,13 +40,14 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          {
-            user ? <><img title={user?.displayName} src={user?.photoURL} /></> : <></>
-          }
-        </div>
-      </label>
+  {
+            user ? <><label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+            <img title={user?.displayName} src={user?.photoURL} />
+            </div>
+          </label></> : <></>
+  }
+    
     {
       user ? <><Link onClick={handleLogout} className="btn btn-sm">Logout</Link></>: <><Link className="btn btn-sm" to="/login">Login</Link></>
     }

@@ -1,29 +1,20 @@
 import React from 'react';
-import { FaFacebook, FaGithub, FaGoogle, FaTwitter } from 'react-icons/fa';
+import { FaFacebook, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import qzone1 from '../../assets/qZone1.png'
 import qzone2 from '../../assets/qZone2.png'
 import qzone3 from '../../assets/qZone3.png'
 import useAuth from '../../hooks/useAuth';
+import SocialLogin from '../../pages/Login/SocialLogin';
 
 const RightBar = () => {
 
     const {user} = useAuth();
     return (
-        <div >
-            <div>
-                {user ? <></> : <><h2 className='text-2xl font-semibold'>Login With</h2>
-                <div className='space-y-2 my-3'>
-                    <button 
-                    className='btn btn-outline w-full btn-sm capitalize flex items-center '
-                    >
-                    <FaGoogle></FaGoogle>Login with Google</button>
-                    <button 
-                    className='btn btn-outline w-full btn-sm capitalize '
-                    >
-                     <FaGithub></FaGithub> Login with Github</button>
-                </div></>}
-            </div>
+        <div>
+            {
+                user ? <></>:<><SocialLogin></SocialLogin></>
+            }
             <div className='my-5'>
                 <h2 className='text-2xl font-semibold'>Find Out on</h2>
                 <div >
