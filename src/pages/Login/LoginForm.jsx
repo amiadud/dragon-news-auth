@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import toast, { Toaster } from 'react-hot-toast';
 import Navbar from '../../shared/Navbar/Navbar';
+import SocialLogin from './SocialLogin';
 
 const LoginForm = () => {
   const { userLogin } = useAuth();
@@ -63,6 +64,7 @@ const LoginForm = () => {
           </div>
         </div>
       </div>
+      <SocialLogin></SocialLogin>
       <Toaster
   position="bottom-center"
   reverseOrder={false}

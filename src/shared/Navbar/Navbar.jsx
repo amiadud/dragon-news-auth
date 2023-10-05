@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import userIcon from '../../assets/user.png'
 import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {

@@ -13,12 +13,14 @@ const About = () => {
         <div>
             <Header></Header>
             <Navbar></Navbar>
+            
+            <div className='grid grid-cols-4'>
+            <div className='col-span-3'>
             {
                 user ? <><h2 className='text-5xl text-center'>I am {user?.displayName}</h2>
                 <img src={user?.photoURL} alt="" /></> : <></>
             }
-            <div className='grid grid-cols-4'>
-                <div className='col-span-3'>ss</div>
+                </div>
                 <div><RightBar></RightBar></div>
             </div>
         </div>

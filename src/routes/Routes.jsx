@@ -16,7 +16,13 @@ const Routes = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () => fetch('news.json')
+                loader: () => fetch('news.json'),
+                children: [
+                    {
+                    path: "/categories/:id",
+                    errorElement:"/(.*)",
+                    loader: () => fetch('../news.json'),
+                }]
             },
             {
                 path: "/news/:id",
@@ -39,10 +45,6 @@ const Routes = createBrowserRouter([
             {
                 path: "/register",
                 element:<RegisterForm></RegisterForm>
-            },
-            {
-                path: "/categories/:id",
-                element: <div>hello</div>
             }
         ]
     }
